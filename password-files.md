@@ -6,7 +6,7 @@ description: >-
 
 # Password Files & Authentication
 
-![imagen por pipedrive.com](.gitbook/assets/image%20%2812%29.png)
+![imagen por pipedrive.com](.gitbook/assets/image%20%2813%29.png)
 
 ## Entendiendo los archivos `passwd` y `shadow`
 
@@ -26,7 +26,7 @@ Ya mencionamos que el archivo `passwd` almacena información en texto plano. Dic
 
 Veamos un diagrama de la estructura de cada línea.
 
-![](.gitbook/assets/image%20%2855%29.png)
+![](.gitbook/assets/image%20%2860%29.png)
 
 Veamos una descripción sobre que función cumple cada una de las partes:
 
@@ -50,7 +50,7 @@ Veamos que contenido obtenemos al ejecutar el comando en alguna de nuestras máq
 cat /etc/passwd
 {% endhint %}
 
-![](.gitbook/assets/image%20%2815%29.png)
+![](.gitbook/assets/image%20%2816%29.png)
 
 vemos que los resultados incluyen una larga lista de cuentas de administración, servicios y finalmente usuarios.
 
@@ -58,7 +58,7 @@ vemos que los resultados incluyen una larga lista de cuentas de administración,
 
 Ya mencionamos que actualmente las credenciales en Linux residen en gran parte en el archivo `/etc/passwd` pero también mencionamos que el  `password hash`  de cada usuario se almacena en el archivo llamado `/etc/shadow`. Veamos en detalle como es la estructura de este otro archivo.
 
-![](.gitbook/assets/image%20%2858%29.png)
+![](.gitbook/assets/image%20%2863%29.png)
 
 De igual forma que en el archivo `/etc/passwd` la data dentro de `/etc/shadow` se almacena también línea por línea. Incluso cada una de las líneas de este archivo se corresponde 1 a 1 con las del archivo `password`.
 
@@ -94,7 +94,7 @@ En Windows las contraseñas son almacenadas en el archivo SAM. Este archivo es e
 
 LM Hash es la forma antigua en la que Windows almacenaba las contraseñas y se remonta a los años '80. Las principal desventaja de este hash es que trabajaba con un set de caracteres limitados \(14 caracteres\), lo cual lo convertía en uno muy fácil de crackear. Internamente los hashes se generan mediante un mecanismo muy débil en general y la longitud del set de caracteres no es su única desventaja.
 
-![Imagen por Cornell University](.gitbook/assets/image%20%28117%29.png)
+![Imagen por Cornell University](.gitbook/assets/image%20%28130%29.png)
 
 {% hint style="info" %}
 **Wikipedia:** **Data Encryption Standard** \(**DES**\) es un algoritmo de cifrado, es decir, un método para [cifrar](https://es.wikipedia.org/wiki/Criptograf%C3%ADa) información. DES fue sometido a un intenso análisis académico y motivó el concepto moderno del [cifrado por bloques](https://es.wikipedia.org/wiki/Cifrado_por_bloques) y su [criptoanálisis](https://es.wikipedia.org/wiki/Criptoan%C3%A1lisis). Hoy en día, DES se considera inseguro para muchas aplicaciones. Esto se debe principalmente a que el tamaño de clave de 56 bits es corto; las claves de DES se han roto en menos de 24 horas. . Se cree que el algoritmo es seguro en la práctica en su variante de [Triple DES](https://es.wikipedia.org/wiki/Triple_DES), aunque existan ataques teóricos. Desde hace algunos años, el algoritmo ha sido sustituido por el nuevo [AES](https://es.wikipedia.org/wiki/Advanced_Encryption_Standard) \(Advanced Encryption Standard\).
@@ -113,7 +113,7 @@ Considerando la facilidad con la que se puede crackear, LM Hash fue desactivado 
 
 Podemos ver este hash en acción usando una herramienta como la que se encuentra online en [este link](https://tobtu.com/lmntlm.php).
 
-![](.gitbook/assets/image%20%28129%29.png)
+![](.gitbook/assets/image%20%28142%29.png)
 
 Como podemos observar los Hashes generados para cada contraseña en formato LM resultan **iguales luego de la conversión**, esto se debe al primer paso que lleva adelante el algoritmo, la conversión de minúsculas a mayúsculas. Si observamos los hashes resultantes en formato NTLM, vemos que son diferentes para cada contraseña.
 
@@ -123,11 +123,11 @@ Veamos que tan sencillo es crackear ese hash usando una herramienta como `hashca
 hashcat -m 3000 -a 3 hash
 {% endhint %}
 
-![](.gitbook/assets/image%20%281%29.png)
+![](.gitbook/assets/image%20%282%29.png)
 
 Dentro de la VM demoró 10min aproximadamente en crackear el password:
 
-![](.gitbook/assets/image%20%2893%29.png)
+![](.gitbook/assets/image%20%28103%29.png)
 
 Como vemos es relativamente simple y rápido el proceso de crackeo de los hashes LM.
 
@@ -139,7 +139,7 @@ Actualmente en Windows se utiliza un mecanismo de hash conocido como NT Hash o N
 
 El protocolo NTLM es un sistema del tipo `Challenge-Response` el cual utiliza el intercambio de 3 mensajes para autenticar al cliente y un cuarto mensaje opcional para la integridad del intercambio.  El hash tiene una longitud de 128 bits y funciona tanto para cuentas locales como para cuentas de dominio de Active Directory. 
 
-![Imagen por IONOS](.gitbook/assets/image%20%2891%29.png)
+![Imagen por IONOS](.gitbook/assets/image%20%28101%29.png)
 
 #### NT Hash - NTLMv1
 
@@ -147,7 +147,7 @@ El algoritmo para este protocolo es bastante simple para la generación del hash
 
 
 
-![Imagen por asecuritysite.com](.gitbook/assets/image%20%28111%29.png)
+![Imagen por asecuritysite.com](.gitbook/assets/image%20%28122%29.png)
 
 El algoritmo para esta versión de NTLM es bastante simple de comprender a alto nivel:
 
@@ -179,11 +179,11 @@ u4-netntlm::kNS:338d08f8e26de93300000000000000000000000000000000:9526fb8c23a9075
 hashcat -m 5500 -a 3 ntlm\_v1\_hash
 {% endhint %}
 
-![](.gitbook/assets/image%20%2873%29.png)
+![](.gitbook/assets/image%20%2880%29.png)
 
 Esta vez le tomó a hashcat unos 5 minutos aproximadamente para crackear el hash.
 
-![](.gitbook/assets/image%20%2874%29.png)
+![](.gitbook/assets/image%20%2883%29.png)
 
 Como podemos notar el proceso de crackeo de la versión NTLMv1 es también relativamente simple y rápido.
 
@@ -191,7 +191,7 @@ Como podemos notar el proceso de crackeo de la versión NTLMv1 es también relat
 
 La versión 2 de NTLM continúa usando el protocolo NTLM de formato `challenge-response` que vimos antes, pero incorpora mejoras de seguridad y criptografía para hacerlo más seguro y reemplazar a NTLMv1. También se incorpora el uso de HMAC-MD5 como algoritmo de Hashing y se incorpora el nombre de dominio como variable para el proceso de autenticación.
 
-![Imagen por Guang Ying Yuan, Advisory IT specialist at IBM.](.gitbook/assets/image%20%2895%29.png)
+![Imagen por Guang Ying Yuan, Advisory IT specialist at IBM.](.gitbook/assets/image%20%28105%29.png)
 
 1. **Negociación:** Se genera el `challenge de 8 bytes`  y es emitido por el server. 
 2. **Respuesta:** Se generan `2 bloques de 16 bytes con hashes HMAC-MD5` a modo de respuesta al `challenge`. Estos bloques de respuesta incluyen también un `challenge` generado en el lado del cliente, el password hash \(HVAC-MD5\) y puede incluirse otra información de identificación. 
@@ -234,17 +234,17 @@ Deberás **desactivar Windows Defender**, dado que mimikatz es detectado como ar
 
 El primer paso es obtener una copia del archivo SAM, para lo cual usaremos la terminal de Powershell \(como Admin\) y copiaremos los archivos `SAM` y `SYSTEM` a nuestra carpeta de trabajo.
 
-![](.gitbook/assets/image%20%2866%29.png)
+![](.gitbook/assets/image%20%2873%29.png)
 
 Deberíamos tener algo similar a esto luego de realizar ese proceso:
 
-![](.gitbook/assets/image%20%2830%29.png)
+![](.gitbook/assets/image%20%2833%29.png)
 
 Ahora necesitamos abrir una consola, idealmente como administrador, y navegar hasta la carpeta donde tenemos nuestro `export y mimikatz`.
 
 Lo siguiente es ejecutar mimikatz desde la terminal de Windows \(PowerShell\):
 
-![](.gitbook/assets/image%20%28131%29.png)
+![](.gitbook/assets/image%20%28144%29.png)
 
 Ahora debemos indicarle a mimikatz que queremos extraer los hashes de archivo SAM y para ello debemos hacer uso del siguiente comando:
 
@@ -254,7 +254,7 @@ lsadump::sam /sam:C:\Users\Administrator\Desktop\mimikatz\x64\sam /system:C:\Use
 
 Como vemos mimikatz extrae los hashes presentes en la base de datos de SAM:
 
-![](.gitbook/assets/image%20%2864%29.png)
+![](.gitbook/assets/image%20%2871%29.png)
 
 Por último usaremos nuevamente a nuestro amigo fiel `hashcat` para tratar de crackear el password de la cuenta `administrador`. Como podemos ver el hash esta en formato NTLM.
 
@@ -264,7 +264,7 @@ hashcat -m 1000 -a 3 hash
 
 Hashcat demora nuevamente unos minutos en crackear el hash.
 
-![](.gitbook/assets/image%20%2837%29.png)
+![](.gitbook/assets/image%20%2841%29.png)
 
 ## Fin de la práctica
 

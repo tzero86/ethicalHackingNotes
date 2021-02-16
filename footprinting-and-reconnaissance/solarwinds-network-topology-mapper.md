@@ -8,7 +8,7 @@ description: >-
 
 ## Solarwinds Network Topology Mapper
 
-![](../.gitbook/assets/image%20%2838%29.png)
+![](../.gitbook/assets/image%20%2842%29.png)
 
 Para esta práctica veremos como realizar un diagrama de una red, utilizando NTM para realizar un scan de topología de red.
 

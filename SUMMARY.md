@@ -33,3 +33,7 @@
 
 * [Sniffing con Wireshark](sniffing/wireshark.md)
 
+---
+
+* [JWT Token Pirate Map](jwt-token-pirate-map.md)
+

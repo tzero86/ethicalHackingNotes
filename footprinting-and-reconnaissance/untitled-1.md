@@ -6,7 +6,7 @@ description: >-
 
 # Footprinting with Recon-NG
 
-![](../.gitbook/assets/image%20%283%29.png)
+![](../.gitbook/assets/image%20%284%29.png)
 
 Al iniciar `recon-ng` nos encontramos con un framework vacío. Lo primero que debemos hacer es instalar `modulos` que habilitan diferentes tipos de funcionalidades en `recon-ng` \(podemos pensarlos como extensiones o plugins\).
 

@@ -8,7 +8,7 @@ description: >-
 
 ## NTFS \(New Technology File System\)
 
-![](../.gitbook/assets/image%20%2868%29.png)
+![](../.gitbook/assets/image%20%2875%29.png)
 
 **NTFS** es un sistema de archivos propietario de Microsoft y fue introducido como reemplazo de sistemas de archivos anteriores como **FAT \(File Allocation Table\)** y **HPFS \(High Performance File System\)** e incorpora mejoras técnicas con respecto a estos. Entre algunas de las ventajas **NTFS** incorpora un soporte mejorado para metadatos, mejoras en la administración de espacio en disco, mejoras de performance, un mejorado sistema de seguridad y  un sistema de encriptado de archivos llamado **EFS \(Encrypting File System\)**. 
 
@@ -16,7 +16,7 @@ Desde **Windows NT 3.1** es el sistema de archivos por default en la familia de 
 
 ## NTFS Alternate Data Streams
 
-![](../.gitbook/assets/image%20%28110%29.png)
+![](../.gitbook/assets/image%20%28121%29.png)
 
 Para poder entender como funciona el ataque de `NTFS Stream Manipulation`, primero debemos conocer lo básico sobre **`ADS`** `(alternate data streams)`. ADS es una característica del sistema de archivos **`NTFS`** `(NT File System)` que permite que más de un `stream` de datos pueda estar asociado a mismo archivo. Cada archivo, tiene su contenido principal conocido como **`default stream`** y puede tener uno o más **`ADS`**.
 
@@ -41,7 +41,7 @@ En esta parte de la práctica veremos como podemos crear un archivo de texto y p
 Para comenzar abrimos la consola de **Windows \(cmd\)** y creamos nuestro primer archivo, en este caso un archivo de texto. Para lo cual usamos el comando **`echo`** , el contenido de nuestro archivo y finalmente el redireccionamos todo a nuestro archivo usando el carácter **`>`** seguido por el **`nombre de archivo y extensión`** que queremos crear. Veamos esto en la consola:  
 
 
-![](../.gitbook/assets/image%20%2836%29.png)
+![](../.gitbook/assets/image%20%2840%29.png)
 
 {% hint style="success" %}
 **`echo`** _{contenido}_ **`>`** _{nombre de archivo}_**.**_{extensión}_
@@ -49,31 +49,31 @@ Para comenzar abrimos la consola de **Windows \(cmd\)** y creamos nuestro primer
 
 Como podemos observar en la imagen, el archivo es creado correctamente y tiene un peso de **`36 bytes`**. Podemos usar el comando **`type`** para ver el contenido del mismo:
 
-![](../.gitbook/assets/image%20%2880%29.png)
+![](../.gitbook/assets/image%20%2890%29.png)
 
 Ahora, usando nuevamente el comando **`echo`** como hicimos en el paso 1, agregaremos el primer **`Alternate Data Stream`** a nuestro archivo. La única diferencia es que en este caso debemos indicar el nombre del **`stream`**. Veamos esto en la consola:
 
-![](../.gitbook/assets/image%20%2869%29.png)
+![](../.gitbook/assets/image%20%2876%29.png)
 
 Como podemos observar el **`stream`** parece haberse agregado sin error y nuestro archivo reporta el mismo tamaño de **`36 bytes`**. También vemos que en ningún lado es reportado que existe un **`ADS`** en el archivo. Esto es precisamente lo que convierte a los ADS en una buena opción para esconder información sin que el usuario lo note.
 
 Agreguemos un segundo ADS y veamos de que manera podemos obtener información de los mismos en la consola:
 
-![](../.gitbook/assets/image%20%2825%29.png)
+![](../.gitbook/assets/image%20%2828%29.png)
 
 Para ver el contenido de **`data streams`** adicionales que pueda contener un archivo, hacemos uso del comando **`dir /r`** el cual lista los archivos incluyendo sus **`ADS`**. Como podemos ver en la imagen anterior el tamaño reportado del archivo sigue siendo el mismo **`36 bytes`** a pesar de que contiene dos **`ADS`** de **`23 bytes`** cada uno. Si prestamos atención al espacio en disco disponible luego de crear el archivo y luego de cada creación de los **`ADS`**, podemos observar que **NTFS** si lleva el registro correcto de cuanto espacio esta siendo utilizado en realidad.
 
 Si abrimos el archivo con el bloc de notas vemos que únicamente se presentan los datos del **`default stream`**:
 
-![](../.gitbook/assets/image%20%2859%29.png)
+![](../.gitbook/assets/image%20%2865%29.png)
 
 Si queremos editar o ver el contenido de cada ADS, debemos invocarlo directamente de la siguiente forma:
 
-![](../.gitbook/assets/image%20%2817%29.png)
+![](../.gitbook/assets/image%20%2818%29.png)
 
 Como dijimos antes el contenido del ADS puede ser de cualquier formato al igual que el archivo que los contenga. Cabe destacar que **Alternate Data Streams** se pueden agregar a **`directorios`** de la misma forma que con**`archivos`**. Veamos esto rápidamente en la consola:
 
-![](../.gitbook/assets/image%20%2887%29.png)
+![](../.gitbook/assets/image%20%2897%29.png)
 
 Como podemos observar en la imagen la carpeta **`DIRECTORIO`** contiene un **`ADS`** llamado **`ADS1`**.
 
@@ -83,13 +83,13 @@ PowerShell incorpora ciertos comandos \(**cmdlets**\) que facilitan trabajar con
 
  
 
-![](../.gitbook/assets/image%20%2831%29.png)
+![](../.gitbook/assets/image%20%2834%29.png)
 
 En el caso de **PowerShell**, el **`default stream`** se conoce como **`unnamed stream`**, o **`stream sin nombre`** ya que aparece listado simplemente como **`:$DATA`**. 
 
 Para ver el contenido por ejemplo del **`ADS2`**, podemos hacer uso del comando **`Get-Content`** de la siguiente manera:
 
-![](../.gitbook/assets/image%20%2810%29.png)
+![](../.gitbook/assets/image%20%2811%29.png)
 
 Si queremos agregar contenido al ADS podemos hacerlo con el comando **`Set-Content`**. Veamos como podemos agregar dentro de un nuevo archivo de texto un **ADS** llamado **`payload`** que contenga un **`archivo ejecutable`** como por ejemplo el clásico **`Microsoft Paint`**. Para eso hacemos uso del siguiente comando:
 
@@ -103,7 +103,7 @@ Set-Content -path .\NTFS_ADS_DEMO.txt -value $(Get-Content $(Get-Command mspaint
 
 En este comando explícitamente indicamos el **`encoding para los bytes`**, el **`readcount en 0`** \(para leer el archivo en una sola operación y el comando **`Get-Command`** para obtener rápidamente la ruta de **`mspaint.exe`** sin tener que especificarla manualmente. Luego simplemente indicamos el nombre del **`stream`** que queremos agregar usando el switch **`-stream {nombreDelStream}`**.
 
-![](../.gitbook/assets/image%20%28122%29.png)
+![](../.gitbook/assets/image%20%28135%29.png)
 
 Como podemos ver en la imagen, nuestro archivo de texto contiene un nuevo **ADS**. Veamos como podemos **`ejecutar`** ese **ADS** que sabemos contiene un archivo ejecutable.  Para lograr esto podemos usar **`Windows Management Instrumentation`** para crear un proceso que ejecute nuestro **ADS**. 
 
@@ -113,7 +113,7 @@ Este método de ejecución de archivos usando **`wmic`** parece haber sido repar
 
 **Actualización:** Luego de varios intentos logré agregar el contenido de la calculadora de Windows **`calc.exe`** a nuestro archivo de práctica y ejecutarlo correctamente usando **`wmic`**:
 
-![](../.gitbook/assets/image%20%2890%29.png)
+![](../.gitbook/assets/image%20%28100%29.png)
 
 Como vemos al ejecutarse el comando correctamente genera un nuevo proceso el cual retorna un **`ProcessId = 4344`** y un **`ReturnValue = 0`** indicando que el proceso se completó exitosamente. No comprendo porque no funcionó el intento inicial, quizás sea el ejecutable de **`mspaint.exe`** o algún error que estoy cometiendo y no logro darme cuenta. Si te das cuenta del problema, házmelo saber con un tweet a mi cuenta [@tzero86](https://twitter.com/Tzero86).
 
@@ -123,7 +123,7 @@ Si queremos **borrar** un **ADS** en particular podemos hacer uso del **cmdlet**
 Remove-Item -Path .\NTFS_ADS_DEMO.txt -stream payload
 ```
 
-![](../.gitbook/assets/image%20%28114%29.png)
+![](../.gitbook/assets/image%20%28126%29.png)
 
 Como podemos ver nuestro archivo ahora contiene solo dos **ADS** adicionales. Hasta aquí vimos y practicamos un poco **NTFS Stream Manipulation**.
 

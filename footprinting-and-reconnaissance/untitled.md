@@ -4,7 +4,7 @@ description: En esta práctica veremos como usar Maltego para realizar un footpr
 
 # Footprinting with Maltego
 
-![](../.gitbook/assets/image%20%2875%29.png)
+![](../.gitbook/assets/image%20%2884%29.png)
 
 En esta práctica usaremos **`Maltego`** en su versión gratuita \(`Community Edition`\) para entender como podemos, utilizando esta herramienta, llevar a cabo un **`footprinting`** de una web objetivo.
 

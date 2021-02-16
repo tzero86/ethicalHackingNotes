@@ -14,7 +14,7 @@ description: >-
 
 Al abrir Wireshark nos aparecerá una pantalla similar a la siguiente, veremos a continuación los controles más importantes que usaremos de aquí en adelante.
 
-![](../.gitbook/assets/image%20%28103%29.png)
+![](../.gitbook/assets/image%20%28113%29.png)
 
 1. **`Filtros:`** Una de los controles que más usaremos en Wireshark es la barra de filtros. Mediante el uso de filtros podemos identificar los paquetes que cumplan uno o más criterios de filtrado. Veremos lo básico de filtros más adelante.
 2. **`Archivos Recientes`**: Esta sección \(Vacía por default al instalar Wireshark de cero\) recopila los últimos archivos PCAP que hayamos abierto. También nos permite abrir archivos directamente haciendo click en el texto **`Open`**.
@@ -24,11 +24,11 @@ Al abrir Wireshark nos aparecerá una pantalla similar a la siguiente, veremos a
 
 En Wireshark los paquetes se clasifican por color según el tipo de protocolo usado y errores encontrados en estos. Para poder ver las reglas de colores para los paquetes de red, vamos a: **`View -> Coloring Rules`**.
 
-![](../.gitbook/assets/image%20%28130%29.png)
+![](../.gitbook/assets/image%20%28143%29.png)
 
 Como podemos observar Wireshark nos presenta todas las reglas de coloreado que están actualmente configuradas.
 
-![](../.gitbook/assets/image%20%2894%29.png)
+![](../.gitbook/assets/image%20%28104%29.png)
 
 Es importante tener presente esta configuración de colores y comenzar a familiarizarnos con ella, dado que es una forma visualmente sencilla de identificar paquetes y protocolos de forma rápida.
 
@@ -73,13 +73,13 @@ Cabe destacar que en Wireshark los filtros se clasifican en dos grandes grupos, 
 
 Los filtros de captura son aplicados **antes de iniciar la captura** de paquetes y no pueden ser alterados durante la captura. Si prestamos atención en la pantalla inicial de Wireshark, este control también se presenta como una barra de búsqueda en la sección **`Capture`**:
 
-![](../.gitbook/assets/image%20%28109%29.png)
+![](../.gitbook/assets/image%20%28120%29.png)
 
 Este tipo de filtros nos permite por ejemplo capturar el tráfico de un rango de IP en particular, el tráfico de un tipo de protocolo en particular, el tráfico únicamente del protocolo IPV4, etc. 
 
 Cabe mencionar que estos filtros también son accesibles desde el menu de Wireshark: **`Capture -> Options (CTRL + K)`**.
 
-![](../.gitbook/assets/image%20%28120%29.png)
+![](../.gitbook/assets/image%20%28133%29.png)
 
 {% hint style="info" %}
 En esta ventana también podemos activar/desactivar el modo promiscuo de Wireshark.
@@ -105,7 +105,7 @@ Click en el siguiente 👉 [**link**](https://gitlab.com/wireshark/wireshark/-/w
 
 Los **`Display Filters`**, nos permiten realizar filtrado de datos directamente sobre la lista de resultados y son los que usaremos regularmente para ubicar el tráfico de red que nos interese inspeccionar. Wireshark utiliza este tipo de filtros para las [**`Coloring Rules`**](wireshark.md#coloring-rules-en-wireshark) que vimos antes y es una de sus principales funcionalidades.  Cabe destacar que la cantidad de filtros que se pueden utilizar es enorme y esta fuera del alcance de esta práctica verlos en detalle. Mencionaremos sin embargo, los que usaremos en esta práctica.
 
-![](../.gitbook/assets/image%20%285%29.png)
+![](../.gitbook/assets/image%20%286%29.png)
 
 {% hint style="info" %}
 Según la misma 👉 [Wiki de Wireshark](https://www.wireshark.org/docs/dfref/), actualmente más de **261000** campos de **3000** protocolos son soportados para su uso con filtros.
@@ -144,7 +144,7 @@ Si quieres realizar esta práctica locamente, al menos la parte del análisis. P
 
 Para comenzar en la pantalla principal de Wireshark aplicaremos un filtro de captura, seleccionando únicamente la interfaz eth0. Para lo cual podemos directamente hacer doble click sobre el nombre de la interfaz:
 
-![](../.gitbook/assets/image%20%2840%29.png)
+![](../.gitbook/assets/image%20%2844%29.png)
 
 Luego de esto Wireshark comenzará a capturar el tráfico de red de esa interfaz automáticamente. Dejamos la captura activa y nos dirigimos a la terminal para conectarnos por **`FTP`** a nuestra **`VM`** e intentamos loguearnos. Luego de esto volvemos a **`Wireshark`** y hacemos click en el botón rojo de stop para detener la captura.
 
@@ -154,11 +154,11 @@ Comenzamos conectándonos al servidor FTP, en este caso usé un usuario reciente
 Para esta práctica también usare el Server de mi Lab local de Active Directory. Mas detalle en el siguiente 👉 [**link**](../scanning/running-scans-with-nmap.md#intro-distintos-tipos-de-scans-con-nmap).
 {% endhint %}
 
-![](../.gitbook/assets/image%20%28107%29.png)
+![](../.gitbook/assets/image%20%28118%29.png)
 
 Una vez detenido el proceso de captura, debemos ver algo similar a esto en Wireshark:
 
-![](../.gitbook/assets/image%20%2822%29.png)
+![](../.gitbook/assets/image%20%2824%29.png)
 
 Ahora hagamos usos de distintos filtros que nos permitan ubicar específicamente el tráfico FTP. Por ejemplo podemos filtrar por el trafico en el puerto 21:
 
@@ -168,7 +168,7 @@ tcp.port == 21
 
 Y como podemos ver Wireshark aplica el Display Filter correspondiente sobre los resultados:
 
-![](../.gitbook/assets/image%20%2878%29.png)
+![](../.gitbook/assets/image%20%2888%29.png)
 
 Alternativamente podemos directamente filtrar por el protocolo FTP simplemente escribiendo:
 
@@ -176,7 +176,7 @@ Alternativamente podemos directamente filtrar por el protocolo FTP simplemente e
 ftp
 ```
 
-![](../.gitbook/assets/image%20%2849%29.png)
+![](../.gitbook/assets/image%20%2854%29.png)
 
 También nos puede interesar ver el tráfico del puerto **`20 (FTP-DATA)`** junto con el del puerto **`21 (FTP)`**:
 
@@ -184,7 +184,7 @@ También nos puede interesar ver el tráfico del puerto **`20 (FTP-DATA)`** junt
 tcp.port == 20 || tcp.port == 21
 ```
 
-![](../.gitbook/assets/image%20%2833%29.png)
+![](../.gitbook/assets/image%20%2836%29.png)
 
 Filtremos directamente por ftp y hagamos click derecho en el paquete número 58 y elegimos la opción **`Follow -> TCP Stream.`** De esta manera podemos seguir el paso a paso del trafico de red generado por nuestro intento de login al la maquina virtual Windows Server.
 
@@ -192,25 +192,25 @@ Filtremos directamente por ftp y hagamos click derecho en el paquete número 58 
 Combinación de teclas para TCP Stream: **CTRL + ALT + SHIFT + T** 
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2854%29.png)
+![](../.gitbook/assets/image%20%2859%29.png)
 
 Al abrirse el TCP Stream, veremos la secuencia de interacción entre el usuario y el servicio FTP. Vemos que el usuario listó los archivos del directorio y descargo el mismo.
 
-![](../.gitbook/assets/image%20%2846%29.png)
+![](../.gitbook/assets/image%20%2851%29.png)
 
 Como podemos ver las credenciales de login fueron **`ftpuser:Test123`** y el usuario descargó el archivo **`Executive_Secrets.txt`** desde el servidor FTP a su equipo. Veamos como podemos ubicar esta acción en el tráfico de red y extraer los contenidos de ese archivo.
 
 Primero filtremos por **`ftp-data`**:
 
-![](../.gitbook/assets/image%20%2847%29.png)
+![](../.gitbook/assets/image%20%2852%29.png)
 
 Luego seleccionamos el paquete **`386`** donde se hace la transferencia del archivo **`(RETR)`**, y seguimos el **`TCP Stream`** como vimos antes.
 
-![](../.gitbook/assets/image%20%2888%29.png)
+![](../.gitbook/assets/image%20%2898%29.png)
 
 Finalmente podemos ver el contenido del archivo descargado por el usuario durante la sesión FTP. Y podemos guardarlo en nuestro equipo haciendo uso de las opciones que nos provee Wireshark.
 
-![](../.gitbook/assets/image%20%2872%29.png)
+![](../.gitbook/assets/image%20%2879%29.png)
 
 Wireshark nos permite cambiar el formato en el que se muestra la data, lo que es útil si en lugar de una archivo de texto plano estuviéramos tratando de recuperar un ejecutable por ejemplo. En ese caso podemos ver el contenido en modo **`raw`** y guardarlo como **`.exe`**.
 
