@@ -4,7 +4,7 @@ description: En esta práctica veremos como hacer fingerprinting de archivos usa
 
 # Fingerprinting with FOCA
 
-![](../.gitbook/assets/image%20%2897%29.png)
+![](../.gitbook/assets/image%20%28107%29.png)
 
 En esta oportunidad vamos a hacer un scan con la herramienta llamada **FOCA** **\(Fingerprinting Organizations with Collected Archives\).**
 

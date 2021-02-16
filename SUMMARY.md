@@ -37,3 +37,7 @@
 
 * [SYN Flooding con HPING3](denial-of-service/syn-flooding-con-hping.md)
 
+## Session Hijacking
+
+* [Session Hijacking](session-hijacking/session-hijacking.md)
+

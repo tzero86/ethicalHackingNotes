@@ -10,7 +10,7 @@ description: Distintos ejemplos de como correr variados tipos de scans usando Nm
 
 En esta práctica veremos como usar nmap para realizar distintos tipos de escaneos mediante los cuales obtendremos distintos detalles de nuestro objetivo. Para esta práctica voy a usar un laboratorio local que tengo creado para practicas de Active Directory como objetivo. Este lab corre en VMware localmente y consta de los siguientes equipos:
 
-![](../.gitbook/assets/image%20%28115%29.png)
+![](../.gitbook/assets/image%20%28127%29.png)
 
 <table>
   <thead>
@@ -103,7 +103,7 @@ El comando completo queda de la siguiente manera:
 **nmap -sn 192.168.31.131**
 {% endhint %}
 
-![](../.gitbook/assets/image%20%28102%29.png)
+![](../.gitbook/assets/image%20%28112%29.png)
 
 {% hint style="info" %}
 El uso de `sudo` no es necesario para este scan.
@@ -133,7 +133,7 @@ sudo nmap -O 192.168.31.131
 Este switch requiere ser ejecutado con privilegios.
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2899%29.png)
+![](../.gitbook/assets/image%20%28109%29.png)
 
 Como vemos este scan no solo intenta detectar el SO \(OS fingerprinting\), sino que también ejecuta algunos análisis adicionales como ser detección de puertos comunes y detección de servicios corriendo en cada puerto.
 
@@ -141,7 +141,7 @@ En este caso vemos que no fue posible detectar el SO correctamente, posiblemente
 
 Veamos como es el output cuando logra detectarlo correctamente:
 
-![](../.gitbook/assets/image%20%282%29.png)
+![](../.gitbook/assets/image%20%283%29.png)
 
  También vemos que incluye los datos que vimos en el scan anterior.
 
@@ -193,7 +193,7 @@ El comando queda de esta manera:
 nmap -p 53,88,389,445 192.168.31.134
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2871%29.png)
+![](../.gitbook/assets/image%20%2878%29.png)
 
 De esta manera podemos escanear los puertos deseados.  
 
@@ -203,7 +203,7 @@ Si queremos escanear por un rango de puertos en particular podemos hacerlo de la
 nmap -p 54-445 192.168.31.131
 {% endhint %}
 
-![](../.gitbook/assets/image%20%28121%29.png)
+![](../.gitbook/assets/image%20%28134%29.png)
 
 ### Escaneando todos los puertos \(65535\).
 
@@ -219,7 +219,7 @@ nmap -p-  192.168.31.131
 Para este host en particular use el switch `-Pn` que nos permite indicarle a nmap que no realice pings. Necesario para objetivos que no responden a ping \(ICMP\) echo requests.
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2852%29.png)
+![](../.gitbook/assets/image%20%2857%29.png)
 
 ### Escaneo de Versiones.
 
@@ -231,7 +231,7 @@ El comando queda de esta forma:
 nmap -sV 192.168.31.131
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2870%29.png)
+![](../.gitbook/assets/image%20%2877%29.png)
 
 ### TCP/IP Full Open Scan
 
@@ -247,7 +247,7 @@ Para realizar este scan el comando queda de la siguiente manera:
 nmap -sT 192.168.31.131
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2816%29.png)
+![](../.gitbook/assets/image%20%2817%29.png)
 
 ### Stealth Scan \(Half-open\)
 
@@ -263,7 +263,7 @@ Para ejecutar este tipo de scan el comando queda de la siguiente forma:
 nmap -sS 192.168.31.131
 {% endhint %}
 
-![](../.gitbook/assets/image%20%287%29.png)
+![](../.gitbook/assets/image%20%288%29.png)
 
 {% hint style="warning" %}
 Como explique antes el switch adicional **`-Pn`** es necesario para hosts que no responden a ping requests \(ICMP Echo Requests\) como es el caso de este objetivo que estoy usando.
@@ -281,11 +281,11 @@ nmap -sP 192.168.31.\*
 
 Notemos que en este caso estamos pasando parte del IP, e indicamos el último valor como `*` para que nmap automáticamente escanee todos los equipos que formen parte del mismo subnet.
 
-![](../.gitbook/assets/image%20%28106%29.png)
+![](../.gitbook/assets/image%20%28117%29.png)
 
 Alternativamente podemos hacer uso de los switches ``**`-PS (SYN Ping) o -PR (ARP Scan)`** los cuales nos regresan resultados como estos:
 
-![](../.gitbook/assets/image%20%2863%29.png)
+![](../.gitbook/assets/image%20%2870%29.png)
 
 De momento no explicaremos el uso de los switches/flags adicionales que puedes ver en la imagen anterior. Cubriremos esos más adelante en esta práctica.
 
@@ -299,7 +299,7 @@ El comando para este tipo de scan es el siguiente:
 **nmap -sC 192.168.31.131**
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2898%29.png)
+![](../.gitbook/assets/image%20%28108%29.png)
 
 Vemos que los resultados que obtenemos incluyen mucha información sobre el controlador de dominio \(en este caso\) escaneado. Estos resultados varían dependiendo de que objetivo estemos escaneando y cuales sean las vulnerabilidades que nmap pueda detectar para cada caso en particular.
 
@@ -329,7 +329,7 @@ Como podemos ver en esa línea anterior, hay varios switches o flags nuevos que 
 
 Este tipo de escaneo suele resultar en un output extenso en la consola, por eso es buena idea guardarlo directamente a un archivo para consultarlo cuando sea necesario.
 
-![](../.gitbook/assets/image%20%28116%29.png)
+![](../.gitbook/assets/image%20%28129%29.png)
 
 El resultado de este scan en su totalidad de puede ver en el siguiente bloque, dado que no amerita capturarlo en imágenes en su totalidad:
 

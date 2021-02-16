@@ -12,11 +12,11 @@ description: >-
 
 La idea detrás del ataque de inundación SYN es saturar a nuestro objetivo con el envío de paquetes que tengan solo la flag SYN habilitada, sin importarnos la respuesta del servidor. Conociendo el mecanismo de negociación de 3 fases del protocolo TCP sabemos que normalmente una solicitud **`SYN`**, es respondida por el servidor con **`SYN-ACK`** para luego el cliente finalmente responder con **`ACK`** y establecer la conexión. 
 
-![](../.gitbook/assets/image%20%286%29.png)
+![](../.gitbook/assets/image%20%287%29.png)
 
 En el caso del ataque SYN, dejamos al servidor a la espera de la respuesta ACK por ende la conexión permanece abierta esperando esa respuesta de una IP de origen que al estar spoofeada no enviará respuesta alguna. 
 
-![Imagen por firewall.cx](../.gitbook/assets/image%20%2813%29.png)
+![Imagen por firewall.cx](../.gitbook/assets/image%20%2814%29.png)
 
 Esto produce, luego de incontables paquetes SYN recibidos, una saturación en el servidor lo cual lo imposibilita de recibir tráfico legitimo para acceder a alguno de los servicios que ofrezca. Como por ejemplo una **`pagina o aplicación web`** siendo servida en el **`puerto 80`**, dejará de responder cuando el servidor se vea saturado. En algunos casos la totalidad del servidor puede verse afectada al consumir todos los recursos disponibles y puede causar la caída del servidor o su reinicio.
 
@@ -51,11 +51,11 @@ En un escenario real, este tráfico constante sería detectado por un Firewall o
 
 Veamos como se ve nuestro comando de ataque desde la terminal:
 
-![](../.gitbook/assets/image%20%2841%29.png)
+![](../.gitbook/assets/image%20%2845%29.png)
 
 Como vemos el comando no muestra mayor información y como esperábamos tampoco procesa ninguna respuesta del objetivo ni nos avisa si los paquetes enviados en efecto arribaron al objetivo. Si vemos como reacciona la maquina objetivo podemos ver que tenemos el uso de red bastante a tope:
 
-![](../.gitbook/assets/image%20%289%29.png)
+![](../.gitbook/assets/image%20%2810%29.png)
 
 Cabe destacar que este ataque es "genérico", pero **`HPING`** nos da la posibilidad de especificar cuales puertos queremos atacar haciendo uso del switch **`-p num_puerto`**. Esto es especialmente útil por ejemplo si estamos atacando un puerto que sirve una aplicación web por ejemplo. En ese caso este ataque causaría que la aplicación web deje de responder normalmente dado el constante ataque con paquetes SYN que estamos realizando. Lo que en efecto sería un ataque de **Denegación de Servicio \(DoS\)**.
 
@@ -65,7 +65,7 @@ Veamos ahora como podemos observar este ataque y su tráfico de red usando **`Wi
 
 Si abrimos [Wireshark](../sniffing/wireshark.md) en nuestra maquina de ataque, iniciamos la captura del trafico en el adaptador **`eth0`** y usamos el siguiente display filter **`ip.addr == 192.168.1.40 && tcp`** podemos ver los paquetes de red con la flag **`SYN`** siendo enviados al objetivo:
 
-![](../.gitbook/assets/image%20%2835%29.png)
+![](../.gitbook/assets/image%20%2839%29.png)
 
 {% hint style="danger" %}
 **NOTA:** Si dejamos que **Wireshark** capture este tráfico de red sin detener la captura luego de unos minutos, _**muy probablemente veremos que Wireshark dejará de responder**_. Algunas veces incluso _**toda la VM dejará de responder**_. 
@@ -73,11 +73,11 @@ Si abrimos [Wireshark](../sniffing/wireshark.md) en nuestra maquina de ataque, i
 
 Si analizamos el contenido de cualquiera de esos paquetes, vemos que la flag **`SYN`** que indicamos desde HPING se esta enviando correctamente:
 
-![](../.gitbook/assets/image%20%2829%29.png)
+![](../.gitbook/assets/image%20%2832%29.png)
 
 Si detenemos el ataque en HPING podemos observar la cantidad enorme de paquetes enviados a nuestro objetivo:
 
-![](../.gitbook/assets/image%20%2814%29.png)
+![](../.gitbook/assets/image%20%2815%29.png)
 
 De esta manera vemos que sencillo resulta realizar un simple ataque de **`DoS`** usando **`HPING`** con paquetes **`SYN`** y la funcionalidad de flooding de **`HPING`** y como podemos observar y analizar este tráfico de red usando **`Wireshark`**.
 
