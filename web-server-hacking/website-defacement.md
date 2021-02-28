@@ -159,7 +159,7 @@ Una vez logueados en nuestra app, navegamos a la opción File Upload en el menú
 
 ![](../.gitbook/assets/image%20%28190%29.png)
 
-La idea de nuestro ataque será la siguiente. Intentaremos vulnerar el formulario de carga que expone esta parte de la app, la cual únicamente admite imágenes. Y veremos de que forma podemos burlar esa protección para poder subir nuestro **form PHP**. Este **form PHP** nos dará acceso para poder eventualmente subir archivos que nos den acceso para poder manipular los archivos del servidor, en contreto el archivo que se carga como el home de esta web app\(**`index.php`**\). Ese archivo index, será luego reemplazado por nuestro **HTML para defacement** que dejé preparado antes. De esta manera realizaremos nuestro defacement.
+La idea de nuestro ataque será la siguiente. Intentaremos vulnerar el formulario de carga que expone esta parte de la app, la cual únicamente admite imágenes. Y veremos de que forma podemos burlar esa protección para poder subir nuestro **form PHP**. Este **form PHP** nos dará acceso para poder eventualmente subir archivos que nos den acceso para poder manipular los archivos del servidor, en concreto el archivo que se carga como el home de esta web app\(**`index.php`**\). Ese archivo index, será luego reemplazado por nuestro **HTML para defacement** que dejé preparado antes. De esta manera realizaremos nuestro defacement.
 
 Para comenzar activaremos el interceptor en Burp suite de manera que la comunicación entre nuestro browser en Kali y la web app pueda ser interceptada. Nos interesa conocer que tipo de request se envía al servidor cuando subimos una imagen válida y cuando intentamos subir un archivo cuya extensión no esta permitida. Evaluaremos las diferencias con Burp y veremos como podemos manipular esta request inválida para convencer al servidor de que el archivo que intentamos subir es una imagen y no un PHP.
 
@@ -261,7 +261,7 @@ Este archivo lo guardaré como **`GIF98.php.jpg`** en un intento de burlar algú
 
 También editaremos la request luego de hacer click en **`Upload`** en la app, para **`eliminar la extensión jpg`** y dejar el parámetro **`Filename`** de esta manera: **`Filename=GIF98.php`.** 
 
-El nombre de este formulario puede ser el que quieras, en mi caso opté por ese sin razón técnica alguna pero fue luego de revisar algunos recursos como **Hacktricks y Penetration Testing Playbook**, donde se menciona la posibilidad de burlar algunas protecciones mediante el agregado a nuestro PHP de una cabecera de imagen **\(header**\):
+El nombre de este formulario puede ser el que quieras, en mi caso opté por ese sin razón técnica alguna pero fue luego de revisar algunos recursos como [**Hacktricks**](https://book.hacktricks.xyz/pentesting-web/file-upload) **y** [**Penetration Testing Playbook**](https://blueteamdope.gitbook.io/penetration-testing-playbook/web-applications/file-upload-vulnerabilities/bypass-file-upload-restrictions), donde se menciona la posibilidad de burlar algunas protecciones mediante el agregado a nuestro PHP de una cabecera de imagen **\(header**\):
 
 ![](../.gitbook/assets/image%20%28196%29.png)
 
@@ -295,7 +295,7 @@ Podemos probar este formulario para ver que en efecto cualquier archivo que suba
 #### Creando nuestro reverse shell con msfvenom
 
 {% hint style="warning" %}
-**NOTA:** En un escenario real muchos de estos payloads que creamos pueden ser fácilmente detectados por el Firewall y Antivirus que estén instalados en el servidor. En este caso como estamos practicando en un laboratorio de pruebas no tendremos ese problema e incluso de tenerlos podemos deshabilitarlos. Para mitigar esto podemos hacer uso de técnicas de obfuscación para lograr subirlos sin que sean detectados.
+**NOTA:** En un escenario real muchos de estos payloads que creamos pueden ser fácilmente detectados por el Firewall y Antivirus que estén instalados en el servidor. En este caso como estamos practicando en un laboratorio de pruebas no tendremos ese problema e incluso de tenerlos podemos deshabilitarlos. Para mitigar esto podemos hacer uso de técnicas de ofuscación para lograr subirlos sin que sean detectados.
 {% endhint %}
 
 Veamos rápidamente como podemos crear nuestro reverse shell usando **`msfvenom`**. No usaremos **`metasploit`**, directamente intentaremos conectar el reverse shell a nuestro listener de **`netcat`** en la terminal de Kali.
@@ -332,7 +332,7 @@ Lo próximo es el defacement que veremos a continuación, para el defacement el 
 
 ![](../.gitbook/assets/image%20%28146%29.png)
 
-Antes que podamos proceder con el defacement debemos solucionar un pequeño problema, la conexión que recibimos con nuestro reverse shell es bastante inestable y la conexión al server se corta rápidamente. Para mitigar este problema intentaremos crear un **`segundo payload`** con en formato exe para la plataforma Windows donde corre la app. La idea es que una vez tengamos la conexión inicial con el **`payload1`**, ejecutaremos el **`payload2`** para obtener una sesión más estable en un **`netcat`** listener secundario.
+Antes que podamos proceder con el defacement **debemos solucionar un pequeño problema**, la conexión que recibimos con nuestro reverse shell es **bastante inestable** y la conexión al server se corta rápidamente. Para mitigar este problema intentaremos crear un **`segundo payload`** con en formato **exe** para la plataforma **Windows** donde corre la app. La idea es que una vez tengamos la conexión inicial con el **`payload1`**, ejecutaremos el **`payload2`** para obtener una sesión más estable en un **`netcat`** listener secundario.
 
 Para crear este segundo payload, también usaremos **`msfvenom`**:
 
