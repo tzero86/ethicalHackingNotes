@@ -374,9 +374,9 @@ Veamos si logramos ver el defacement al acceder a la ruta principal de **`DVWA`*
 
 ![](../.gitbook/assets/defacement_lab_tzero86.gif)
 
-Lo hemos logrado, lo más dificultoso fue aprender de que manera vulnerar las protecciones de la carga de archivos de esta web app y como generar una conexión estable por reverse shell que nos permita luego llevar a cabo nuestro **Website Defacement**.
+**Lo hemos logrado**, lo más dificultoso fue aprender de que manera vulnerar las protecciones de la carga de archivos de esta web app y como generar una conexión estable por reverse shell que nos permita luego llevar a cabo nuestro **Website Defacement**.
 
-Espero que este práctica te sea de utilidad en tus estudios, ciertamente yo he aprendido mucho al durante esta práctica y la elaboración de este escrito.
+Espero que este práctica te sea de utilidad en tus estudios, ciertamente yo he aprendido mucho  durante esta práctica y la elaboración de este escrito.
 
 {% hint style="info" %}
 Estas prácticas están sujetas a modificaciones y correcciones, la versión más actualizada disponible se encuentra online en [el siguiente link](https://tzero86.gitbook.io/tzero86/).
