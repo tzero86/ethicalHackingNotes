@@ -48,7 +48,7 @@ Veremos como podemos ahora poner este tipo de ataque en práctica usando una apl
 
 ### Instalando XAMPP
 
-La instalación de XAMPP es bastante simple, basta con ejecutar el instalador y prácticamente hacer click en Next con los valores por default hasta que comience la instalación.
+La instalación de **`XAMPP`** es bastante simple, basta con ejecutar el instalador y prácticamente hacer click en Next con los valores por default hasta que comience la instalación.
 
 ![](../.gitbook/assets/image%20%28178%29.png)
 
@@ -144,22 +144,22 @@ Para nuestra práctica de defacement, usaremos las siguientes herramientas. Aseg
 
 ### Testeando posibles vulnerabilidades en File Uploads
 
-Lo primero que haremos en abrir **Burp** para usar el navegador integrado que tiene y revisar que tenemos acceso a la web que levantamos con **XAMPP**. Todo esto lo haré desde la **VM** con **Kali**. La idea es revisar el módulo de subida de archivos que tiene **DWVA** e intentar vulnerar sus protecciones, para poder subir un payload que nos de un acceso inicial a este servidor donde se aloja la app. Abrimos Burp entonces, y navegamos a la URL donde instalamos esta app.
+Lo primero que haremos en abrir **Burp** para usar el navegador integrado que tiene y revisar que tenemos acceso a la web que levantamos con **XAMPP**. Todo esto lo haré desde la **VM** con **Kali**. La idea es revisar el módulo de subida de archivos que tiene **DVWA** e intentar vulnerar sus protecciones, para poder subir un payload que nos de un acceso inicial a este servidor donde se aloja la app. Abrimos Burp entonces, y navegamos a la URL donde instalamos esta app.
 
 ![](../.gitbook/assets/image%20%28189%29.png)
 
 1. Una vez abierto **Burp Suite**, navegamos a la siguiente ruta para abrir el browser integrado: **`Proxy Tab -> Intercept Tab -> Open Browser button`** \(both the one in the tab header and the one in the body of burp tab content do the same\).
-2. Navegamos hasta la URL de nuestra app web vulnerable: **`Windows-VM-IP:port/pathDWVA:`**
-   1. **Windows-VM-IP:** El IP de la VM \(Windows 10 en mi caso\) donde esta corriendo **`XAMPP`** y nuestra app **`DWVA`**.
+2. Navegamos hasta la URL de nuestra app web vulnerable: **`Windows-VM-IP:port/pathDVWA:`**
+   1. **Windows-VM-IP:** El IP de la VM \(Windows 10 en mi caso\) donde esta corriendo **`XAMPP`** y nuestra app **`DVWA`**.
    2. **Port:** El puerto para conectarnos al contenido que esta sirviendo **`XAMPP`** \(**`80`** y **`443`**\).
-   3. **pathDWVA:** El nombre de la carpeta donde guardamos **`DWVA`**, que esta dentro de **`XAMPP/htdocs`**.
-3. **Login en DWVA:** en este caso no nos interesa vulnerar este formulario de login, dado que ya conocemos las **`credenciales (admin:password)`**. El reto que nos interesa resolver esta dentro de el dashboard de DVWA, y es el que nos dará el acceso para realizar nuestro defacement.
+   3. **pathDVWA:** El nombre de la carpeta donde guardamos **`DVWA`**, que esta dentro de **`XAMPP/htdocs`**.
+3. **Login en DVWA:** en este caso no nos interesa vulnerar este formulario de login, dado que ya conocemos las **`credenciales (admin:password)`**. El reto que nos interesa resolver esta dentro de el dashboard de DVWA, y es el que nos dará el acceso para realizar nuestro defacement.
 
 Una vez logueados en nuestra app, navegamos a la opción File Upload en el menú de la izquierda de la app:
 
 ![](../.gitbook/assets/image%20%28190%29.png)
 
-La idea de nuestro ataque será la siguiente. Intentaremos vulnerar el formulario de carga que expone esta parte de la app, la cual únicamente admite imágenes. Y veremos de que forma podemos burlar esa protección para poder subir nuestro form PHP. Este form PHP nos dará acceso para poder eventualmente subir achivos que nos den acceso para poder manipular el archivo que se carga como el home de esta web app\(**`index.php`**\). Ese archivo index, será luego reemplazado por nuestro HTML para defacement que dejé preparado antes. De esta manera realizaremos nuestro defacement.
+La idea de nuestro ataque será la siguiente. Intentaremos vulnerar el formulario de carga que expone esta parte de la app, la cual únicamente admite imágenes. Y veremos de que forma podemos burlar esa protección para poder subir nuestro **form PHP**. Este **form PHP** nos dará acceso para poder eventualmente subir archivos que nos den acceso para poder manipular los archivos del servidor, en contreto el archivo que se carga como el home de esta web app\(**`index.php`**\). Ese archivo index, será luego reemplazado por nuestro **HTML para defacement** que dejé preparado antes. De esta manera realizaremos nuestro defacement.
 
 Para comenzar activaremos el interceptor en Burp suite de manera que la comunicación entre nuestro browser en Kali y la web app pueda ser interceptada. Nos interesa conocer que tipo de request se envía al servidor cuando subimos una imagen válida y cuando intentamos subir un archivo cuya extensión no esta permitida. Evaluaremos las diferencias con Burp y veremos como podemos manipular esta request inválida para convencer al servidor de que el archivo que intentamos subir es una imagen y no un PHP.
 
@@ -348,7 +348,7 @@ Y una vez creado lo subimos con nuestro custom upload form, como hicimos con el 
 
 ![](../.gitbook/assets/image%20%28205%29.png)
 
-Ahora dejaremos **`2 listeners`** corriendo con **`netcat`**, cada uno apuntando al puerto seleccionado durante la creación de estos payloads. En mi caso, **`2112 para el payload php`** y **`2113 para el exe`**. Ejecutaremos entonces el **`payload php`** y al recibir la conexion rápidamente ejecutaremos el payload .exe para recibir la otra conexión por reverse shell que quizá sea más estable:
+Ahora dejaremos **`2 listeners`** corriendo con **`netcat`**, cada uno apuntando al puerto seleccionado durante la creación de estos payloads. En mi caso, **`2112 para el payload php`** y **`2113 para el exe`**. Ejecutaremos entonces el **`payload php`** y al recibir la conexión rápidamente ejecutaremos el payload .exe para recibir la otra conexión por reverse shell que quizá sea más estable:
 
 ![](../.gitbook/assets/image%20%28197%29.png)
 
@@ -370,17 +370,15 @@ Y en efecto vemos que hemos logrado cargar nuestro **`HTML`** para el defacement
 
 ![](../.gitbook/assets/image%20%28162%29.png)
 
-Veamos si logramos ver el defacement al acceder a la ruta principal de **`DWVA`**:
+Veamos si logramos ver el defacement al acceder a la ruta principal de **`DVWA`**:
 
 ![](../.gitbook/assets/defacement_lab_tzero86.gif)
 
-Lo hemos logrado, lo más dificultoso fue aprender de que manera vulnerar las protecciones de la carga de archivos de esta web app y como generar una conexión estable por reverse shell que nos permita luego llevar a cabo nuestro Website Defacement.
+Lo hemos logrado, lo más dificultoso fue aprender de que manera vulnerar las protecciones de la carga de archivos de esta web app y como generar una conexión estable por reverse shell que nos permita luego llevar a cabo nuestro **Website Defacement**.
 
 Espero que este práctica te sea de utilidad en tus estudios, ciertamente yo he aprendido mucho al durante esta práctica y la elaboración de este escrito.
 
 {% hint style="info" %}
 Estas prácticas están sujetas a modificaciones y correcciones, la versión más actualizada disponible se encuentra online en [el siguiente link](https://tzero86.gitbook.io/tzero86/).
 {% endhint %}
-
-
 
