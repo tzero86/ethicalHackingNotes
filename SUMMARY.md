@@ -41,3 +41,7 @@
 
 * [Session Hijacking](session-hijacking/session-hijacking.md)
 
+## Web Server Hacking
+
+* [Website Defacement](web-server-hacking/website-defacement.md)
+
