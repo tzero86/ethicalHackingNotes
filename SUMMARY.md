@@ -45,3 +45,7 @@
 
 * [Website Defacement](web-server-hacking/website-defacement.md)
 
+## IoT Hacking
+
+* [Shodan.io: Localizando Dispositivos IoT Vulnerables](iot-hacking/shodan.io-localizando-dispositivos-iot-vulnerables.md)
+
