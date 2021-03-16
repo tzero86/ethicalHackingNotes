@@ -6,7 +6,7 @@ description: >-
 
 # Shodan.io: Localizando Dispositivos IoT Vulnerables
 
-![](../.gitbook/assets/image%20%28217%29.png)
+![](../.gitbook/assets/image%20%28218%29.png)
 
 **IoT** o Internet de las cosas \(Internet of Things\) es básicamente la interconexión de distintos tipos de dispositivos en una red que compartan. Esta red puede ser incluso internet mismo, en otros casos redes privadas. Estos dispositivos entablan comunicación con otros dispositivos de la misma red y a su vez permiten monitoreo e control de sus funcionalidades.
 
@@ -22,7 +22,7 @@ A continuación veremos como podemos utilizar **Shodan** para localizar diversos
 
 ## Usando Shodan.io y su Search Query Syntax
 
-![](../.gitbook/assets/image%20%28215%29.png)
+![](../.gitbook/assets/image%20%28216%29.png)
 
 Para comenzar con **Shodan** podemos hacer uso de su interfaz para navegar los resultados por categorías, tipos de dispositivos, países, etc. Esta interfaz web proporciona incluso una vista de mapa donde podemos ubicar dispositivos geográficamente. También disponemos de un programa de línea de comandos Shodan CLI para distintos sistemas operativos, y  paquetes de desarrollo para Python, NodeJS, etc.
 
@@ -423,11 +423,11 @@ En este caso no hace falta revisar el script, solo necesitamos actualizar la var
 
 Si vemos el screenshot que viene como parte de los resultados:
 
-![](../.gitbook/assets/image%20%28212%29.png)
+![](../.gitbook/assets/image%20%28213%29.png)
 
 El mismo resultado que obtendríamos realizando la consulta en la web de Shodan.io:
 
-![](../.gitbook/assets/image%20%28216%29.png)
+![](../.gitbook/assets/image%20%28217%29.png)
 
 #### 
 
@@ -549,7 +549,63 @@ Actualizamos nuestro script con la nueva query y al ejecutarlo obtenemos lo sigu
 
 Si analizamos este resultado, podemos ver que entre los datos devueltos por Shodan se incluye una enumeración de los Shares de SMB, o Samba. Los mismos podemos apreciarlos en un formato más ameno al realizar la misma consulta en la web de Shodan.io
 
-![](../.gitbook/assets/image%20%28213%29.png)
+![](../.gitbook/assets/image%20%28214%29.png)
+
+De igual manera que Shodan nos provee este tipo de resultados, también puede incluir la lista vulnerabilidades detectadas en dichos dispositivos. En el caso de esta práctica no veremos mas que un ejemplo de este tipo de resultados tanto en modo API response como en la Web de Shodan:
+
+```javascript
+"isp": "Universidad Nacional de La Plata",
+ "longitude": -57.95453,
+ "last_update": "2021-03-15T20:08:12.310077",
+ "country_code3": null,
+ "vulns": [
+  "CVE-2010-2068",
+  "CVE-2011-4317",
+  "CVE-2017-7679",
+  "CVE-2018-1312",
+  "CVE-2011-3368",
+  "CVE-2011-3348",
+  "CVE-2012-3499",
+  "CVE-2012-4558",
+  "CVE-2011-3607",
+  "CVE-2016-8612",
+  "CVE-2016-4975",
+  "CVE-2012-4557",
+  "CVE-2019-9639",
+  "CVE-2019-9638",
+  "CVE-2017-7668",
+  "CVE-2013-6438",
+  "CVE-2012-2687",
+  "CVE-2019-9637",
+  "CVE-2011-4415",
+  "CVE-2012-0031",
+  "CVE-2013-2249",
+  "CVE-2010-1452",
+  "CVE-2013-1896",
+  "CVE-2017-3167",
+  "CVE-2012-0053",
+  "CVE-2012-0883",
+  "CVE-2017-3169",
+  "CVE-2011-3639",
+  "CVE-2011-0419",
+  "CVE-2014-0231",
+  "CVE-2013-1862",
+  "CVE-2014-0098",
+  "CVE-2019-9641",
+  "CVE-2011-3192"
+ ],
+ "country_name": "Argentina",
+```
+
+Esta lista de vulnerabilidades se presenta de la siguiente forma en Shodan.io:
+
+![](../.gitbook/assets/image%20%28219%29.png)
+
+![](../.gitbook/assets/image%20%28212%29.png)
+
+![](../.gitbook/assets/image%20%28221%29.png)
+
+
 
 De esta manera vimos como podemos aprovechar el poder de Shodan.io para fácilmente localizar distintos tipos de dispositivos conectados a internet. Y vimos como ubicar Webcams, Sesiones RDP comprometidas por ransomware y finalmente localizamos una impresora cuyas SMB Shares fueron enumeradas por Shodan.io.
 
