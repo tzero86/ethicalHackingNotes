@@ -4,9 +4,9 @@ description: En esta práctica veremos como usar Maltego para realizar un footpr
 
 # Footprinting with Maltego
 
-![](../.gitbook/assets/image%20%2884%29.png)
+![](<../.gitbook/assets/image (72).png>)
 
-En esta práctica usaremos **`Maltego`** en su versión gratuita \(`Community Edition`\) para entender como podemos, utilizando esta herramienta, llevar a cabo un **`footprinting`** de una web objetivo.
+En esta práctica usaremos **`Maltego`** en su versión gratuita (`Community Edition`) para entender como podemos, utilizando esta herramienta, llevar a cabo un **`footprinting`** de una web objetivo.
 
 ## Instalando Transforms
 
@@ -16,7 +16,7 @@ Para instalar **`transforms`**, Maltego dispone de una sección llamada **`trans
 
 ![](https://i.imgur.com/2jLKfOH.png)
 
-El `hub` es una suerte de `store o market` donde podemos encontrar`transforms` pagos, gratuitos y algunos que ofrecen free trials \(pruebas gratuitas\). Disponemos de `filtros` para refinar nuestra búsqueda. En este caso en particular usaremos todos `transforms gratuitos` para hacer nuestra práctica de reconocimiento web.
+El `hub` es una suerte de `store o market` donde podemos encontrar`transforms` pagos, gratuitos y algunos que ofrecen free trials (pruebas gratuitas). Disponemos de `filtros` para refinar nuestra búsqueda. En este caso en particular usaremos todos `transforms gratuitos` para hacer nuestra práctica de reconocimiento web.
 
 En mi caso voy a utilizar los siguientes transforms gratuitos:
 
@@ -42,7 +42,7 @@ Para iniciar generamos un nuevo `graph` desde el menú de Maltego:
 
 Una vez creado vemos que disponemos de una suerte de `canvas` vacío donde vamos a poder organizar los elementos de nuestro scan. Estos elementes en Maltego se llaman `Entities`. Podemos ver una lista de cada una en el `panel a la izquierda` de nuestro `canvas`, diferenciados por categorías.
 
-### Definiendo el Dominio \(Entities\)
+### Definiendo el Dominio (Entities)
 
 Las `Entities` nos permiten ubicar en el `canvas` los distintos tipos de `dispositivos`, `eventos`, `infraestructuras`, `locations`, `Personal`, etc.
 
@@ -54,7 +54,7 @@ Para agregar nuestra entidad al `canvas`, basta con arrastrarla y soltarla sobre
 
 * **Opción 1:** Hacer `doble click` en el `texto` de la `entidad` y cambiar el `valor` al `dominio objetivo`:
   * ![](https://i.imgur.com/d6OIkRN.png)
-* **Opción 2:** Editar el `dominio` usando el panel de propiedades de la `entidad` \(este panel es genérico a cualquier `entidad` que tengamos seleccionada\):
+* **Opción 2:** Editar el `dominio` usando el panel de propiedades de la `entidad` (este panel es genérico a cualquier `entidad` que tengamos seleccionada):
   * ![](https://i.imgur.com/K4Nx6PL.png)
 
 En mi caso utilizaré como `objetivo` una web de noticias online:
@@ -63,7 +63,7 @@ En mi caso utilizaré como `objetivo` una web de noticias online:
 
 ### Realizando el primer scan Manual
 
-En Maltego cada `entity` nos ofrece diversos tipos de scan \(en realidad también son llamados `transforms`\). Los mismos son habilitados por los `transforms` que tengamos instalados. Cada entidad puede contener distintos tipos de `scans` disponibles según su tipo. Para ver los `scans` disponibles, podemos hacer `click derecho` sobre la entidad:
+En Maltego cada `entity` nos ofrece diversos tipos de scan (en realidad también son llamados `transforms`). Los mismos son habilitados por los `transforms` que tengamos instalados. Cada entidad puede contener distintos tipos de `scans` disponibles según su tipo. Para ver los `scans` disponibles, podemos hacer `click derecho` sobre la entidad:
 
 ![](https://i.imgur.com/mUCw5A4.png)
 
@@ -75,7 +75,7 @@ Comenzaremos por hacer un scan del tipo `whois`. Podemos usar la barra de búsqu
 
 ![](https://i.imgur.com/vSU6ymG.png)
 
-En este caso probaremos el `transform` \(scan\) llamado `to DNS - NS (Name Server)`. Al hacerle `click` el `scan/transform` seleccionado es ejecutado. Vemos que luego de un momento `2` nuevas entidades aparecen en nuestro `canvas`. También podemos ver que cada `transform/scan` genera un `log` al ejecutarse que se muestra en la ventada de `output` debajo del `canvas`:
+En este caso probaremos el `transform` (scan) llamado `to DNS - NS (Name Server)`. Al hacerle `click` el `scan/transform` seleccionado es ejecutado. Vemos que luego de un momento `2` nuevas entidades aparecen en nuestro `canvas`. También podemos ver que cada `transform/scan` genera un `log` al ejecutarse que se muestra en la ventada de `output` debajo del `canvas`:
 
 ![](https://i.imgur.com/GMryuvF.png)
 
@@ -115,7 +115,6 @@ Luego de ejecutar la **`machine`**, en la parte superior derecha de la pantalla 
 
 Vemos que en este caso el `footprinting` realizado nos genera en nuestro `canvas` una considerable cantidad de nuevas `entidades` de variados tipos. Cada una de las cuales nos permite seguir utilizando `transforms` adicionales para intentar conseguir información y detalles adicionales que luego podemos recopilar para tener un panorama lo más completo posible de nuestro objetivo.
 
-Como podemos observar el poder de Maltego es considerable y la facilidad de uso que nos ofrece la convierte en una herramienta formidable para nuestros esfuerzos de **`footprinting`** `y` **`reconocimiento.`**
+Como podemos observar el poder de Maltego es considerable y la facilidad de uso que nos ofrece la convierte en una herramienta formidable para nuestros esfuerzos de **`footprinting`**` ``y`` `**`reconocimiento.`**
 
 Durante esta simple práctica vimos algunas de las funcionalidades que Maltego ofrece, ciertamente hay muchas más por descubrir, aprender y utilizar. Espero que este texto sea útil y sirva para comenzar a explorar esta poderosa herramienta.
-

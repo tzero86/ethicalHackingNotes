@@ -8,7 +8,7 @@ description: >-
 
 ## Solarwinds Network Topology Mapper
 
-![](../.gitbook/assets/image%20%2842%29.png)
+<div align="center"><img src="../.gitbook/assets/image (175).png" alt=""></div>
 
 Para esta práctica veremos como realizar un diagrama de una red, utilizando NTM para realizar un scan de topología de red.
 
@@ -22,7 +22,7 @@ Al iniciar NTM vemos una suerte de wizard donde podemos iniciar nuestro primer s
 
 En nuestro caso queremos realizar un scan básico por ende en el paso de `Network Selection` definiré una serie de IPs obtenidas mediante `Shodan.io`. Dichas IPs pertenecen a la `Universidad de Ljubljana en Lituania`.
 
-Si avanzamos por el wizard tendremos la posibilidad de definir un nombre para nuestro scan, debajo de esa opción vemos también una opción para ignorar los nodos de red que no únicamente respondan a ping \(ICMP\) y no a SNMP/WMI:
+Si avanzamos por el wizard tendremos la posibilidad de definir un nombre para nuestro scan, debajo de esa opción vemos también una opción para ignorar los nodos de red que no únicamente respondan a ping (ICMP) y no a SNMP/WMI:
 
 ![](https://i.imgur.com/MO0kZEt.png)
 
@@ -66,7 +66,8 @@ En este caso vemos que podemos realizar conexiones de escritorio remoto, TraceRo
 
 Por medio de esta práctica obtuvimos los siguientes datos:
 
-* La Subnet 192.168.1.0/24 contiene los siguientes nodos de red de los cuales obtuvimos las siguientes direcciones IP: 
+* La Subnet 192.168.1.0/24 contiene los siguientes nodos de red de los cuales obtuvimos las siguientes direcciones IP:\
+
   * 192.168.1.34
   * 192.168.1.34
   * 192.168.1.35
@@ -76,4 +77,3 @@ Por medio de esta práctica obtuvimos los siguientes datos:
   * 192.168.1.46
 
 Esta recolección de información nos permite tener una idea más detallada de la red objetivo y la obtención de los IPs nos permitirá realizar distintos tipos de scaneos a futuro usando, por ejemplo, nmap para identificar puertos abiertos y servicios en ejecución.
-

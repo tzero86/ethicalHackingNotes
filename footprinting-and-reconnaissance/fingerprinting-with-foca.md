@@ -4,9 +4,9 @@ description: En esta práctica veremos como hacer fingerprinting de archivos usa
 
 # Fingerprinting with FOCA
 
-![](../.gitbook/assets/image%20%28107%29.png)
+![](<../.gitbook/assets/image (87).png>)
 
-En esta oportunidad vamos a hacer un scan con la herramienta llamada **FOCA** **\(Fingerprinting Organizations with Collected Archives\).**
+En esta oportunidad vamos a hacer un scan con la herramienta llamada **FOCA** **(Fingerprinting Organizations with Collected Archives).**
 
 Para esta práctica voy a usar `www.globant.com` como objetivo inicial para conocer un poco sobre `FOCA` y su uso. Luego usaremos algún otro objetivo para ver casos donde haya `metadata` expuesta.
 
@@ -58,11 +58,10 @@ En este otro ejemplo vemos que un **PDF** del campus de la UTN revela diferentes
 
 ![](https://i.imgur.com/gQILptw.png)
 
-En este caso obtenemos algunas `carpetas`\(Folders\), algunos `emails` y la `versión del software` usado en la creación del documento.
+En este caso obtenemos algunas `carpetas`(Folders), algunos `emails` y la `versión del software` usado en la creación del documento.
 
 Algunos documentos revelan mucha más información:
 
 ![](https://i.imgur.com/EIj4Wi3.png)
 
 En este caso podemos ver que la **`metadata`** extraída de ciertos documentos, exponen cuentas de usuarios, correos, impresoras, carpetas, incluso otros servidores. Claramente sanitizar los documentos antes de compartirlos es clave para prevenir que agentes externos puedan obtener detalles potencialmente sensibles con herramientas como **`FOCA`**.
-

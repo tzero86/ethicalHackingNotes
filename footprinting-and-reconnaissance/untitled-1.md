@@ -6,9 +6,9 @@ description: >-
 
 # Footprinting with Recon-NG
 
-![](../.gitbook/assets/image%20%284%29.png)
+![](<../.gitbook/assets/image (125).png>)
 
-Al iniciar `recon-ng` nos encontramos con un framework vacío. Lo primero que debemos hacer es instalar `modulos` que habilitan diferentes tipos de funcionalidades en `recon-ng` \(podemos pensarlos como extensiones o plugins\).
+Al iniciar `recon-ng` nos encontramos con un framework vacío. Lo primero que debemos hacer es instalar `modulos` que habilitan diferentes tipos de funcionalidades en `recon-ng` (podemos pensarlos como extensiones o plugins).
 
 Para ver los comandos disponibles usamos el comando `help`:
 
@@ -22,15 +22,15 @@ Con cualquier framework donde se utilicen módulos o extensiones es debemos cono
 
 Para buscar que módulos disponibles existen para recon-ng, contamos con el comando `marketplace search`, con el cual recon-ng mostrara una lista de los módulos disponibles para ser instalados:
 
- 
+&#x20;
 
 ![](https://i.imgur.com/po2xQvD.png)
 
-La lista de módulos disponibles es bastante extensa, y vemos que entre los detalles tenemos `path`, `version`, `status`, `updated.` 
+La lista de módulos disponibles es bastante extensa, y vemos que entre los detalles tenemos `path`, `version`, `status`, `updated.`&#x20;
 
 ![](https://i.imgur.com/ek70rM8.png)
 
-Adicionalmente tenemos dos columnas llamadas `D` y `K` que nos indican si el modulo tiene Dependencias\(D\) o si necesita de una key\(K\), como es por ejemplo el caso de `shodan_ip`.
+Adicionalmente tenemos dos columnas llamadas `D` y `K` que nos indican si el modulo tiene Dependencias(D) o si necesita de una key(K), como es por ejemplo el caso de `shodan_ip`.
 
 ### Agregando API keys
 
@@ -50,7 +50,7 @@ De esta manera dejamos instalado el modulo seleccionado.
 
 ### Cargando y configurando Módulos
 
-Es necesario cargar el modulo que se desea utilizar, en este caso: `modules load shodan_ip`. Similar a otros frameworks como `metasploit`. En recon-ng los módulos tienen diferentes opciones que debemos setear para poder ejecutarlos. Para ver las opciones requeridas \(y opcionales\) del modulo seleccionado usamos el siguiente comando: `options list`:
+Es necesario cargar el modulo que se desea utilizar, en este caso: `modules load shodan_ip`. Similar a otros frameworks como `metasploit`. En recon-ng los módulos tienen diferentes opciones que debemos setear para poder ejecutarlos. Para ver las opciones requeridas (y opcionales) del modulo seleccionado usamos el siguiente comando: `options list`:
 
 ![](https://i.imgur.com/rTwi9v7.png)
 
@@ -60,7 +60,7 @@ Si ejecutamos el comando `info`, podemos ver los distintos tipos de opciones que
 
 ### Seteando Opciones
 
-Para setear las opciones usamos el comando `options set {NOMBRE_OPCION}`, en este caso el modulo necesita que `SOURCE` este seteado. El source en nuestro caso es el IP del objetivo \(obtenido en shodan.io\):
+Para setear las opciones usamos el comando `options set {NOMBRE_OPCION}`, en este caso el modulo necesita que `SOURCE` este seteado. El source en nuestro caso es el IP del objetivo (obtenido en shodan.io):
 
 ![](https://i.imgur.com/viuIMVx.png)
 
@@ -84,7 +84,7 @@ De esta manera realizamos un scan simple utilizando `shodan` para obtener puerto
 
 Es importante tener en cuenta que recon-ng nos permite organizar nuestra información en diferentes `workspaces` o espacios de trabajo. La ventaja de esto es que podemos tener nuestra información separada por ejemplo, por objetivos o clientes para los cuales estemos haciendo reconocimiento. De esta manera es muy simple tener un espacio por ejemplo para todo lo relacionados a nuestras tareas de reconocimiento de `microsoft.com` y en otro workspace tener todo lo relacionado a `udemy.com`.
 
-El uso de workspaces es muy simple como vemos a continuación: 
+El uso de workspaces es muy simple como vemos a continuación:&#x20;
 
 ![](https://i.imgur.com/qaG8pnp.png)
 
@@ -92,4 +92,3 @@ El uso de workspaces es muy simple como vemos a continuación:
 * `workspaces create {NOMBRE_WORKSPACE}` nos permite crear uno nuevo.
 * `workspaces load {NOMBRE_WORKSPACE}` nos permite cargar y marcar como activo un determinado workspace.
 * `workspaces remove {NOMBRE_WORKSPACE}` nos permite borrar un workspace.
-

@@ -12,11 +12,11 @@
 ## Scanning
 
 * [Running scans with Nmap](scanning/running-scans-with-nmap.md)
-* [Basic Scanning \(Shodan.io & Nmap\)](scanning/basic-scanning-shodan.io-and-nmap.md)
+* [Basic Scanning (Shodan.io & Nmap)](scanning/basic-scanning-shodan.io-and-nmap.md)
 
 ## Enumeration
 
----
+***
 
 * [Password Files & Authentication](password-files.md)
 
@@ -26,14 +26,25 @@
 
 ## SYSTEM HACKING
 
-* [Esteganografía \(Steganography\)](system-hacking/esteganografia-steganography.md)
+* [Esteganografía (Steganography)](system-hacking/esteganografia-steganography.md)
 * [NTFS Stream Manipulation](system-hacking/ntfs-stream-manipulation-wip.md)
 
 ## Sniffing
 
 * [Sniffing con Wireshark](sniffing/wireshark.md)
 
----
+## Denial Of Service
 
-* [JWT Token Pirate Map](jwt-token-pirate-map.md)
+* [SYN Flooding con HPING3](denial-of-service/syn-flooding-con-hping.md)
 
+## Session Hijacking
+
+* [Session Hijacking](session-hijacking/session-hijacking.md)
+
+## Web Server Hacking
+
+* [Website Defacement](web-server-hacking/website-defacement.md)
+
+## IoT Hacking
+
+* [Shodan.io: Localizando Dispositivos IoT Vulnerables](iot-hacking/shodan.io-localizando-dispositivos-iot-vulnerables.md)

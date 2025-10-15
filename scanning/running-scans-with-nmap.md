@@ -4,74 +4,25 @@ description: Distintos ejemplos de como correr variados tipos de scans usando Nm
 
 # Running scans with Nmap
 
-![](../.gitbook/assets/nmap_project_logo_wht-1-.png)
+![](../.gitbook/assets/NMap_Project_Logo_WHT\[1].png)
 
 ## Intro: Distintos tipos de scans con Nmap
 
 En esta práctica veremos como usar nmap para realizar distintos tipos de escaneos mediante los cuales obtendremos distintos detalles de nuestro objetivo. Para esta práctica voy a usar un laboratorio local que tengo creado para practicas de Active Directory como objetivo. Este lab corre en VMware localmente y consta de los siguientes equipos:
 
-![](../.gitbook/assets/image%20%28127%29.png)
+![](<../.gitbook/assets/image (120).png>)
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Tipo</th>
-      <th style="text-align:left">IP</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">
-        <p></p>
-        <p>DC: Controlador de Dominio</p>
-      </td>
-      <td style="text-align:left">
-        <p></p>
-        <p>192.168.31.131</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Client1: Win 10 Enterprise</td>
-      <td style="text-align:left">192.168.31.132</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Client2: Windows 10 Pro</td>
-      <td style="text-align:left">192.168.31.133</td>
-    </tr>
-  </tbody>
-</table>
+| Tipo                                     | IP                           |
+| ---------------------------------------- | ---------------------------- |
+| <p></p><p>DC: Controlador de Dominio</p> | <p></p><p>192.168.31.131</p> |
+| Client1: Win 10 Enterprise               | 192.168.31.132               |
+| Client2: Windows 10 Pro                  | 192.168.31.133               |
 
 Este lab esta destinado a practicar ciertas vulnerabilidades de varios tipos, algunos de ellos detallados a continuación:
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">
-        <p></p>
-        <ul>
-          <li>LLMNR and NBT-NS Poisoning</li>
-          <li>SMB Relay Attacks</li>
-          <li>Kerberoasting</li>
-          <li>BloodHound and other enumeration tools</li>
-        </ul>
-      </td>
-      <td style="text-align:left">
-        <ul>
-          <li>Golden Ticket</li>
-          <li>Token Impersonation</li>
-          <li>IPv6 DNS Takeover Attacks</li>
-          <li>Credentials Dumping with Mimikatz</li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
+|                                                                                                                                                    |                                                                                                                                         |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| <p></p><ul><li>LLMNR and NBT-NS Poisoning</li><li>SMB Relay Attacks</li><li>Kerberoasting</li><li>BloodHound and other enumeration tools</li></ul> | <ul><li>Golden Ticket</li><li>Token Impersonation</li><li>IPv6 DNS Takeover Attacks</li><li>Credentials Dumping with Mimikatz</li></ul> |
 
 {% hint style="info" %}
 Esta práctica no cubre las vulnerabilidades mencionadas ni la creación del lab, únicamente lo usaremos como objetivo para aprender los distintos tipos de escaneos.
@@ -91,33 +42,33 @@ En esta primer parte del práctico veremos los escaneos más simples que podemos
 
 Lo primero que podemos probar es como hacer ping a nuestro objetivo. Por el momento comencemos por un solo IP objetivo, el del controlador de dominio.
 
-Para hacer un simple scan de un host con nmap podemos hacer uso del siguiente switch `-sn`, el mismo nos devuelve varios detalles del objetivo aparte de informarnos si el host esta activo, como ser la latencia y la dirección MAC del host. 
+Para hacer un simple scan de un host con nmap podemos hacer uso del siguiente switch `-sn`, el mismo nos devuelve varios detalles del objetivo aparte de informarnos si el host esta activo, como ser la latencia y la dirección MAC del host.&#x20;
 
 {% hint style="info" %}
 **-sn**: Ping Scan - disable port scan
 {% endhint %}
 
-El comando completo queda de la siguiente manera: 
+El comando completo queda de la siguiente manera:&#x20;
 
 {% hint style="success" %}
 **nmap -sn 192.168.31.131**
 {% endhint %}
 
-![](../.gitbook/assets/image%20%28112%29.png)
+![](<../.gitbook/assets/image (181).png>)
 
 {% hint style="info" %}
 El uso de `sudo` no es necesario para este scan.
 {% endhint %}
 
-![](../.gitbook/assets/image.png)
+![](<../.gitbook/assets/image (37).png>)
 
 Con este simple scan obtuvimos la siguiente información de nuestro objetivo:
 
-| **Info Obtenida** | Valor |
-| :--- | :--- |
-| Estado del Host \(Activo/Inactivo\) | Host is up |
-| MAC Address  | 00:0C:29:1C:F8:3D \(VMware\) |
-| Latencia | 0.00039s |
+| **Info Obtenida**                 | Valor                      |
+| --------------------------------- | -------------------------- |
+| Estado del Host (Activo/Inactivo) | Host is up                 |
+| MAC Address                       | 00:0C:29:1C:F8:3D (VMware) |
+| Latencia                          | 0.00039s                   |
 
 ### Detectando el Sistema Operativo.
 
@@ -133,53 +84,23 @@ sudo nmap -O 192.168.31.131
 Este switch requiere ser ejecutado con privilegios.
 {% endhint %}
 
-![](../.gitbook/assets/image%20%28109%29.png)
+![](<../.gitbook/assets/image (44).png>)
 
-Como vemos este scan no solo intenta detectar el SO \(OS fingerprinting\), sino que también ejecuta algunos análisis adicionales como ser detección de puertos comunes y detección de servicios corriendo en cada puerto.
+Como vemos este scan no solo intenta detectar el SO (OS fingerprinting), sino que también ejecuta algunos análisis adicionales como ser detección de puertos comunes y detección de servicios corriendo en cada puerto.
 
 En este caso vemos que no fue posible detectar el SO correctamente, posiblemente por alguno de los ajustes que tengo realizados en el laboratorio local. Es importante saber que disponemos de un switch alternativo para intentar detectar el SO más agresivamente: `--osscan-guess` .
 
 Veamos como es el output cuando logra detectarlo correctamente:
 
-![](../.gitbook/assets/image%20%283%29.png)
+![](<../.gitbook/assets/image (101).png>)
 
- También vemos que incluye los datos que vimos en el scan anterior.
+&#x20;También vemos que incluye los datos que vimos en el scan anterior.
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Info Obtenida</th>
-      <th style="text-align:left">Valor</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">Listado de puertos abiertos y sus servicios</td>
-      <td style="text-align:left">
-        <p>PORT STATE SERVICE</p>
-        <p>53/tcp open domain</p>
-        <p>88/tcp open kerberos-sec</p>
-        <p>135/tcp open msrpc</p>
-        <p>139/tcp open netbios-ssn</p>
-        <p>389/tcp open ldap</p>
-        <p>445/tcp open microsoft-ds</p>
-        <p>464/tcp open kpasswd5</p>
-        <p>593/tcp open http-rpc-epmap</p>
-        <p>636/tcp open ldapssl</p>
-        <p>3268/tcp open globalcatLDAP</p>
-        <p>3269/tcp open globalcatLDAPssl</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Distancia de red hasta el host</td>
-      <td style="text-align:left">1 hop</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Posible Versi&#xF3;n del Sistema Operativo (Host de ejemplo)</td>
-      <td style="text-align:left">Windows XP SP3 o Windows Server 2012</td>
-    </tr>
-  </tbody>
-</table>
+| Info Obtenida                                           | Valor                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Listado de puertos abiertos y sus servicios             | <p>PORT STATE SERVICE </p><p>53/tcp open domain </p><p>88/tcp open kerberos-sec </p><p>135/tcp open msrpc </p><p>139/tcp open netbios-ssn </p><p>389/tcp open ldap </p><p>445/tcp open microsoft-ds </p><p>464/tcp open kpasswd5 </p><p>593/tcp open http-rpc-epmap </p><p>636/tcp open ldapssl </p><p>3268/tcp open globalcatLDAP </p><p>3269/tcp open globalcatLDAPssl</p> |
+| Distancia de red hasta el host                          | 1 hop                                                                                                                                                                                                                                                                                                                                                                        |
+| Posible Versión del Sistema Operativo (Host de ejemplo) | Windows XP SP3 o Windows Server 2012                                                                                                                                                                                                                                                                                                                                         |
 
 
 
@@ -187,15 +108,15 @@ Veamos como es el output cuando logra detectarlo correctamente:
 
 Para escanear determinados puertos podemos hacer uso del switch `-p` el cual nos permite especificar una serie de puertos específicos, sobre los cuales realizar un scan.
 
-El comando queda de esta manera: 
+El comando queda de esta manera:&#x20;
 
 {% hint style="success" %}
 nmap -p 53,88,389,445 192.168.31.134
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2878%29.png)
+![](<../.gitbook/assets/image (68).png>)
 
-De esta manera podemos escanear los puertos deseados.  
+De esta manera podemos escanear los puertos deseados. &#x20;
 
 Si queremos escanear por un rango de puertos en particular podemos hacerlo de la siguiente forma:
 
@@ -203,9 +124,9 @@ Si queremos escanear por un rango de puertos en particular podemos hacerlo de la
 nmap -p 54-445 192.168.31.131
 {% endhint %}
 
-![](../.gitbook/assets/image%20%28134%29.png)
+![](<../.gitbook/assets/image (16).png>)
 
-### Escaneando todos los puertos \(65535\).
+### Escaneando todos los puertos (65535).
 
 Si en cambio queremos escanear todos los puertos podemos hacerlo de la siguiente manera, usando el switch `-p-`.
 
@@ -216,14 +137,14 @@ nmap -p-  192.168.31.131
 {% endhint %}
 
 {% hint style="warning" %}
-Para este host en particular use el switch `-Pn` que nos permite indicarle a nmap que no realice pings. Necesario para objetivos que no responden a ping \(ICMP\) echo requests.
+Para este host en particular use el switch `-Pn` que nos permite indicarle a nmap que no realice pings. Necesario para objetivos que no responden a ping (ICMP) echo requests.
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2857%29.png)
+![](<../.gitbook/assets/image (75).png>)
 
 ### Escaneo de Versiones.
 
-Para realizar un escaneo que nos ayude a identificar las versiones de los servicios que están corriendo en el objetivo podemos hacer uso del siguiente switch `-sV`. 
+Para realizar un escaneo que nos ayude a identificar las versiones de los servicios que están corriendo en el objetivo podemos hacer uso del siguiente switch `-sV`.&#x20;
 
 El comando queda de esta forma:
 
@@ -231,11 +152,11 @@ El comando queda de esta forma:
 nmap -sV 192.168.31.131
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2877%29.png)
+![](<../.gitbook/assets/image (78).png>)
 
 ### TCP/IP Full Open Scan
 
-Si queremos realizar un escaneo completamente abierto, podemos hacer uso del switch `-sT`. En este tipo de escaneo generalmente nos asegura una respuesta dado que la sesión se inicia en su totalidad \(SYN, SYN+ACK, ACK, RST\).
+Si queremos realizar un escaneo completamente abierto, podemos hacer uso del switch `-sT`. En este tipo de escaneo generalmente nos asegura una respuesta dado que la sesión se inicia en su totalidad (SYN, SYN+ACK, ACK, RST).
 
 {% hint style="danger" %}
 Importante: Este escaneo es fácilmente detectado por firewalls y otras medidas de seguridad.
@@ -247,14 +168,14 @@ Para realizar este scan el comando queda de la siguiente manera:
 nmap -sT 192.168.31.131
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2817%29.png)
+![](<../.gitbook/assets/image (124).png>)
 
-### Stealth Scan \(Half-open\)
+### Stealth Scan (Half-open)
 
 En muchos casos necesitamos realizar escaneos sin alertar o disparar detecciones del lado del objetivo. Para estos casos nmap cuenta con el switch `-sS`. En este tipo de scan la sesión no se completa correctamente, y únicamente los paquetes **`SYC, SYNC+ACK y RST`** son utilizados. Cuando el objetivo responde, el cliente en vez de responder con **`ACK`** responde directamente con **`RST`**.
 
 {% hint style="warning" %}
-**Este comando requiere de privilegios para correr \(sudo\).**
+**Este comando requiere de privilegios para correr (sudo).**
 {% endhint %}
 
 Para ejecutar este tipo de scan el comando queda de la siguiente forma:
@@ -263,10 +184,10 @@ Para ejecutar este tipo de scan el comando queda de la siguiente forma:
 nmap -sS 192.168.31.131
 {% endhint %}
 
-![](../.gitbook/assets/image%20%288%29.png)
+![](<../.gitbook/assets/image (104).png>)
 
 {% hint style="warning" %}
-Como explique antes el switch adicional **`-Pn`** es necesario para hosts que no responden a ping requests \(ICMP Echo Requests\) como es el caso de este objetivo que estoy usando.
+Como explique antes el switch adicional **`-Pn`** es necesario para hosts que no responden a ping requests (ICMP Echo Requests) como es el caso de este objetivo que estoy usando.
 {% endhint %}
 
 ### Escanear equipos en la red
@@ -281,17 +202,17 @@ nmap -sP 192.168.31.\*
 
 Notemos que en este caso estamos pasando parte del IP, e indicamos el último valor como `*` para que nmap automáticamente escanee todos los equipos que formen parte del mismo subnet.
 
-![](../.gitbook/assets/image%20%28117%29.png)
+![](<../.gitbook/assets/image (73).png>)
 
-Alternativamente podemos hacer uso de los switches ``**`-PS (SYN Ping) o -PR (ARP Scan)`** los cuales nos regresan resultados como estos:
+Alternativamente podemos hacer uso de los switches **`-PS (SYN Ping) o -PR (ARP Scan)`** los cuales nos regresan resultados como estos:
 
-![](../.gitbook/assets/image%20%2870%29.png)
+![](<../.gitbook/assets/image (202).png>)
 
 De momento no explicaremos el uso de los switches/flags adicionales que puedes ver en la imagen anterior. Cubriremos esos más adelante en esta práctica.
 
 ### Escaneo con Default scripts
 
-Nmap incorpora scripts \(NSE\) que nos permiten indicar si durante el escaneo queremos que nmap también intente correr los scripts con los que viene incorporados. Estos scripts prueban vulnerabilidades comunes que pueden aportar buena información sobre el objetivo y sobre como lograr explotarlos para obtener acceso. Esto se realiza mediante el switch `-sC`.
+Nmap incorpora scripts (NSE) que nos permiten indicar si durante el escaneo queremos que nmap también intente correr los scripts con los que viene incorporados. Estos scripts prueban vulnerabilidades comunes que pueden aportar buena información sobre el objetivo y sobre como lograr explotarlos para obtener acceso. Esto se realiza mediante el switch `-sC`.
 
 El comando para este tipo de scan es el siguiente:
 
@@ -299,9 +220,9 @@ El comando para este tipo de scan es el siguiente:
 **nmap -sC 192.168.31.131**
 {% endhint %}
 
-![](../.gitbook/assets/image%20%28108%29.png)
+![](<../.gitbook/assets/image (9).png>)
 
-Vemos que los resultados que obtenemos incluyen mucha información sobre el controlador de dominio \(en este caso\) escaneado. Estos resultados varían dependiendo de que objetivo estemos escaneando y cuales sean las vulnerabilidades que nmap pueda detectar para cada caso en particular.
+Vemos que los resultados que obtenemos incluyen mucha información sobre el controlador de dominio (en este caso) escaneado. Estos resultados varían dependiendo de que objetivo estemos escaneando y cuales sean las vulnerabilidades que nmap pueda detectar para cada caso en particular.
 
 ## Parte 2: Escaneos múltiples.
 
@@ -313,7 +234,7 @@ Digamos que quiero obtener rápidamente toda la información que vimos, en los e
 * Tipos de datos que me gustaría obtener
 * Que tan rápido quiero obtener los resultados
 
-Usualmente en los labs de práctica o challenges del tipo Capture The Flag \(Captura la bandera\), utilizo el siguiente set de switches o flags de nmap:
+Usualmente en los labs de práctica o challenges del tipo Capture The Flag (Captura la bandera), utilizo el siguiente set de switches o flags de nmap:
 
 {% hint style="success" %}
 sudo nmap -sC -sV -Pn -p- -T5 -O -v -oN results  192.168.31.131
@@ -321,19 +242,19 @@ sudo nmap -sC -sV -Pn -p- -T5 -O -v -oN results  192.168.31.131
 
 Como podemos ver en esa línea anterior, hay varios switches o flags nuevos que estamos pasando a nmap que no hemos visto en esta práctica aún. Veamos uno a uno que función cumplen.
 
-| Switch/Flag | Función |
-| :---: | :--- |
-| **-T5** |  Indica la velocidad del scan. Valores posibles 1 a 5, siendo 5 el más alto. \(Aumenta la detención de nuestro scan por parte de los mecanismos de defensa que tenga el objetivo\) |
-| **-v** | Indica a nmap que debe producir output verboso, proveyendo al usuario con mucho detalle sobre cada scan y su resultado. |
-| **-oN &lt;archivoSalida&gt;** | Indica a nmap que debe generar un archivo de salida con los resultados. En este caso en formato común \(texto\). |
+|        Switch/Flag       | Función                                                                                                                                                                          |
+| :----------------------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|          **-T5**         |  Indica la velocidad del scan. Valores posibles 1 a 5, siendo 5 el más alto. (Aumenta la detención de nuestro scan por parte de los mecanismos de defensa que tenga el objetivo) |
+|          **-v**          | Indica a nmap que debe producir output verboso, proveyendo al usuario con mucho detalle sobre cada scan y su resultado.                                                          |
+| **-oN \<archivoSalida>** | Indica a nmap que debe generar un archivo de salida con los resultados. En este caso en formato común (texto).                                                                   |
 
 Este tipo de escaneo suele resultar en un output extenso en la consola, por eso es buena idea guardarlo directamente a un archivo para consultarlo cuando sea necesario.
 
-![](../.gitbook/assets/image%20%28129%29.png)
+![](<../.gitbook/assets/image (216).png>)
 
 El resultado de este scan en su totalidad de puede ver en el siguiente bloque, dado que no amerita capturarlo en imágenes en su totalidad:
 
-```text
+```
 ┌──(kali㉿kali)-[~]
 └─$ sudo nmap -sC -sV -Pn -p- -T5 -O -v -oN results  192.168.31.131
 [sudo] password for kali: 
@@ -508,64 +429,12 @@ Durante esta práctica vimos de que manera podemos utilizar un subset de funcion
 
 {% tabs %}
 {% tab title="Información del Objetivo" %}
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:center">Dato</th>
-      <th style="text-align:center">Detalle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:center"><b>Puertos abiertos y servicios (DC)</b>
-      </td>
-      <td style="text-align:center">
-        <p>53 (domain Simple DNS Plus)
-          <br />135 (MS Windows RPC)
-          <br />139 (MS Netbios SSN)
-          <br />445 (MS DS)
-          <br />49703 (MS Win RPC)
-          <br />9389 (.NET Message Framing)
-          <br />49667 ( MS Win RPC)
-          <br />3268 (MS Active Directory LDAP)</p>
-        <p>3269 (MS Active Directory LDAP)
-          <br />636 (SSL LDAP)
-          <br />49674 (MS Win RPC)
-          <br />49666 (MS Win RPC)
-          <br />593 (MS Win RPC Over HTTP 1.0)
-          <br />5985 (Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP))</p>
-        <p>49673 (Microsoft Win RPC over HTTP 1.0)</p>
-        <p>88 (MS Kerberos)</p>
-        <p>464 (kpasswd5)</p>
-        <p>49710 (MS Win RPC)</p>
-        <p>49686 (MS Win RPC)</p>
-        <p>389 (MS Active Directory LDAP).</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:center"><b>Domain Controller Domain Name</b>
-      </td>
-      <td style="text-align:center">Chukaro-DC.CHUKARO.local</td>
-    </tr>
-    <tr>
-      <td style="text-align:center"><b>Sistema Operativo</b>
-      </td>
-      <td style="text-align:center">MS Windows</td>
-    </tr>
-    <tr>
-      <td style="text-align:center"><b>Equipos activos en la subnet del DC</b>
-      </td>
-      <td style="text-align:center">
-        <p>192.168.31.1</p>
-        <p>192.168.31.2</p>
-        <p>192.168.31.131 (DC)
-          <br />192.168.31.31.132 (Client1)
-          <br />192.168.31.31.133 (Client2)</p>
-        <p>192.168.31.31.134</p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+|                   Dato                  |                                                                                                                                                                                                                                                                                                  Detalle                                                                                                                                                                                                                                                                                                  |
+| :-------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  **Puertos abiertos y servicios (DC)**  | <p>53 (domain Simple DNS Plus) <br>135 (MS Windows RPC)<br>139 (MS Netbios SSN)<br> 445 (MS DS) <br>49703 (MS Win RPC) <br>9389 (.NET Message Framing) <br>49667 ( MS Win RPC)<br> 3268 (MS Active Directory LDAP)</p><p> 3269 (MS Active Directory LDAP)<br> 636 (SSL LDAP)<br> 49674 (MS Win RPC)<br> 49666 (MS Win RPC)<br> 593 (MS Win RPC Over HTTP 1.0)<br> 5985 (Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP))</p><p>49673 (Microsoft Win RPC over HTTP 1.0) </p><p>88 (MS Kerberos) </p><p>464 (kpasswd5) </p><p>49710 (MS Win RPC)</p><p>49686 (MS Win RPC)</p><p>389 (MS Active Directory LDAP).</p> |
+|    **Domain Controller Domain Name**    |                                                                                                                                                                                                                                                                                          Chukaro-DC.CHUKARO.local                                                                                                                                                                                                                                                                                         |
+|          **Sistema Operativo**          |                                                                                                                                                                                                                                                                                                 MS Windows                                                                                                                                                                                                                                                                                                |
+| **Equipos activos en la subnet del DC** |                                                                                                                                                                                                                           <p>192.168.31.1</p><p>192.168.31.2</p><p>192.168.31.131 (DC)<br>192.168.31.31.132 (Client1)<br>192.168.31.31.133 (Client2)</p><p>192.168.31.31.134</p>                                                                                                                                                                                                                          |
 {% endtab %}
 {% endtabs %}
 
@@ -574,4 +443,3 @@ Hasta acá llegamos con esta práctica de scanning con nmap, vimos como ejecutar
 {% hint style="info" %}
 Estas prácticas están sujetas a modificaciones y correcciones, la versión más actualizada disponible se encuentra online en [el siguiente link](https://tzero86.gitbook.io/tzero86/).
 {% endhint %}
-
