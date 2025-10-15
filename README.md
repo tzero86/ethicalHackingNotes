@@ -10,7 +10,7 @@ description: >-
 
 ![](<.gitbook/assets/Grunge Water Mechanic Tool Business Card.png>)
 
-Bienvenido a mis notas de estudio del curso de CEH de la UTN y de hacking ético en general, espero que te resulten de utilidad para tus estudios y prácticas. Cada uno de estos escritos nace en principio como una práctica a un módulo de la cursada, pero no solo queda en la mera práctica. Trato de  cada escrito tenga el suficiente detalle e ilustre el uso básico de cada herramienta o proceso y no solo sea un mini documento donde se resuelve lo pedido y ya.&#x20;
+Bienvenido a mis notas de estudio del curso de CEH de la UTN y de hacking ético en general, espero que te resulten de utilidad para tus estudios y prácticas. Cada uno de estos escritos nace en principio como una práctica a un módulo de la cursada, pero no solo queda en la mera práctica. Trato de que cada escrito tenga el suficiente detalle e ilustre, por lo menos, el uso básico de cada herramienta o proceso y no solo sea un mini documento donde se resuelve lo pedido y ya.&#x20;
 
 La idea de estos escritos es realmente generar documentación que sirva a futuro como referencia o guía rápida para cuando necesite consultarlos nuevamente. Y que puedan ser compartidos libremente con la comunidad de estudiantes que necesiten acceso a información de consulta para sus estudios.&#x20;
 
