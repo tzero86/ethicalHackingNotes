@@ -17,8 +17,11 @@ La idea de estos escritos es realmente generar documentación que sirva a futuro
 {% hint style="info" %}
 Estos escritos detallan mis apuntes y notas personales creadas para comprender y practicar los contenidos de la cursada y algunos adicionales. Los mismos estarán en constante revisión y actualización. Todos están creados por mi para estudio y futura consulta y pueden contener errores propios de quien esta en constante aprendizaje. Si ves algo que se pueda mejorar no dudes en mencionarlo, puedes comunicarte conmigo en Twitter [@tzero86](https://twitter.com/Tzero86) en cualquier momento.
 
-También están disponibles guías técnicas sobre resolución de laboratorios en [mi blog](https://www.tzero86bits.tk/) (solo en Ingles por el momento).
+También están disponibles guías técnicas sobre resolución de laboratorios en [mi blog](https://tzero86.xyz/) (solo en Ingles por el momento).\
+\
+Si tu situación te lo permite, aprecio cualquier ayuda que puedas dar para colaborar con mis estudios y la creación de nuevo contenido. Te estaré eternamente agradecido 💚  <a href="https://buymeacoffee.com/tzero86" class="button primary" data-icon="mug-hot">Buy me a coffee</a>
 
+\
 _**Beware of the dog, you have been warned.**_ 😎
 {% endhint %}
 
